@@ -1,4 +1,5 @@
 import queue
+from typing import Callable
 
 
 def task(name: str, work_queue: queue.Queue[int]) -> None:
@@ -6,7 +7,7 @@ def task(name: str, work_queue: queue.Queue[int]) -> None:
         print(f"Task {name} nothing to do")
     else:
         while not work_queue.empty():
-            count = work_queue.get()
+            count: int = work_queue.get()
             total = 0
             print(f"Task {name} running")
             for _ in range(count):
@@ -26,7 +27,10 @@ def main() -> None:
         work_queue.put(work)
 
     # Create some synchronous tasks
-    tasks = [(task, "One", work_queue), (task, "Two", work_queue)]
+    tasks: list[tuple[Callable[..., None], str, queue.Queue[int]]] = [
+        (task, "One", work_queue),
+        (task, "Two", work_queue),
+    ]
 
     # Run the tasks
     for t, n, q in tasks:

@@ -14,7 +14,7 @@ from typing import Any, Generator
 
 def task(name: str, queue: queue.Queue[int]) -> Generator[None, Any, None]:
     while not queue.empty():
-        count = queue.get()
+        count: int = queue.get()
         total = 0
         print(f"Task {name} running")
         for _ in range(count):
@@ -36,7 +36,10 @@ def main() -> None:
         work_queue.put(work)
 
     # Create some tasks
-    tasks = [task("One", work_queue), task("Two", work_queue)]
+    tasks: list[Generator[None, Any, None]] = [
+        task("One", work_queue),
+        task("Two", work_queue),
+    ]
 
     # Run the tasks
     done = False
@@ -45,8 +48,7 @@ def main() -> None:
             try:
                 # Context Start from here,
                 next(t)
-            except StopIteration as e:
-                print(f"Error: {e.__str__()}")
+            except StopIteration:
                 tasks.remove(t)
             if len(tasks) == 0:
                 print("All Tasks completed.")

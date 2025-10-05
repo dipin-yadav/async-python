@@ -1,18 +1,20 @@
 import time
 
-def count():
+
+def count() -> None:
     print("One")
     time.sleep(1)
     print("Two")
     time.sleep(2)
 
-def main():
+
+def main() -> None:
     for _ in range(3):
         count()
 
 
 if __name__ == "__main__":
-    start = time.perf_counter()
+    start: float = time.perf_counter()
     main()
-    elapsed = time.perf_counter() - start
+    elapsed: float = time.perf_counter() - start
     print(f"{__file__} executed in {elapsed:.2f} seconds.")
