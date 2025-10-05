@@ -10,3 +10,8 @@ Command-line programs are small, quick processes that run in a terminal. These s
 An asynchronous program behaves differently. Asynchronous programs can start new steps before previous ones have finished, allowing multiple operations to be in progress simultaneously. The system may not wait for an execution step to be completed before moving on to the next one.
 
 This means that the program will move on to future execution steps even though a previous step hasn’t yet finished and is still running elsewhere. This also means that the program uses mechanisms such as callbacks, promises, or event handlers to determine what to do when a previous step does finish running.
+
+## Further reading
+
+- Real Python — [Async Features in Python](https://realpython.com/python-async-features)
+- Youtube/@coreyms — [Python Tutorial: AsyncIO - Complete Guide to Asynchronous Programming with Animations](https://www.youtube.com/watch?v=oAkLSJNr5zY)
